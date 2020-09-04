@@ -1,6 +1,7 @@
 import tweepy
 from datetime import date
 from os import environ
+import time
 
 # from creds import API_KEY, API_KEY_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET
 API_KEY = environ['API_KEY']
@@ -42,7 +43,13 @@ def check_followers(api):
 
 
 if __name__ == '__main__':
-    auth, twitter_api = auth_and_get_api()
+    posting_interval = 60 * 60 * 24  # Daily
 
-    # tweet_days_passed(twitter_api)
-    check_followers(twitter_api)
+    while True:
+        print('Performing the daily tasks...')
+        auth, twitter_api = auth_and_get_api()
+
+        tweet_days_passed(twitter_api)
+        check_followers(twitter_api)
+
+        time.sleep(posting_interval)
