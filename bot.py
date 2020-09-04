@@ -16,6 +16,7 @@ LAST_UEFA_CUP = date(1984, 5, 23)
 LATEST_TROPHY = max(LAST_CHAMPIONSHIP, LAST_FA_CUP, LAST_LEAGUE_CUP, LAST_UEFA_CUP)
 
 
+# A kind of 'init' function
 def auth_and_get_api():
     auth = tweepy.OAuthHandler(API_KEY, API_SECRET)
     auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
@@ -23,12 +24,13 @@ def auth_and_get_api():
     return auth, tweepy.API(auth)
 
 
-def tweet_days_passed(api):
-    dates_delta = date.today() - LATEST_TROPHY
+def tweet_days_passed(api, spurs_event=LATEST_TROPHY):
+    dates_delta = date.today() - spurs_event
 
-    api.update_status(f'{dates_delta.days} Days since Spurs last won a trophy + {time.now()}')
+    api.update_status(f'{dates_delta.days} Days since Spurs last won a trophy + {time.time()}')
 
 
+# Maintains the - you follow me I follow you policy
 def check_followers(api):
     my_followers = api.followers()
     my_friends = api.friends_ids()
@@ -50,7 +52,7 @@ if __name__ == '__main__':
         print('Performing the daily tasks...')
         auth, twitter_api = auth_and_get_api()
 
-        tweet_days_passed(twitter_api)
+        tweet_days_passed(twitter_api, LATEST_TROPHY)
         check_followers(twitter_api)
 
         time.sleep(posting_interval)
