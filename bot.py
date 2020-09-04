@@ -26,7 +26,7 @@ def auth_and_get_api():
 def tweet_days_passed(api):
     dates_delta = date.today() - LATEST_TROPHY
 
-    api.update_status(f'{dates_delta.days} Days since Spurs last won a trophy')
+    api.update_status(f'{dates_delta.days} Days since Spurs last won a trophy + {time.now()}')
 
 
 def check_followers(api):
@@ -43,7 +43,8 @@ def check_followers(api):
 
 
 if __name__ == '__main__':
-    posting_interval = 60 * 60 * 24  # Daily
+    # posting_interval = 60 * 60 * 24  # Daily
+    posting_interval = 60 * 60 * 1  # Hourly
 
     while True:
         print('Performing the daily tasks...')
