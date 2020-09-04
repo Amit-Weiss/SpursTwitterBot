@@ -1,13 +1,12 @@
 import tweepy
-from datetime import date, timedelta
+from datetime import date
+from os import environ
 
 # from creds import API_KEY, API_KEY_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET
-from os import environ
-CONSUMER_KEY = environ['CONSUMER_KEY']
-CONSUMER_SECRET = environ['CONSUMER_SECRET']
-ACCESS_KEY = environ['ACCESS_KEY']
+API_KEY = environ['API_KEY']
+API_SECRET = environ['API_SECRET']
+ACCESS_TOKEN = environ['ACCESS_TOKEN']
 ACCESS_SECRET = environ['ACCESS_SECRET']
-
 
 LAST_CHAMPIONSHIP = date(1961, 4, 29)
 LAST_FA_CUP = date(1991, 5, 18)
@@ -17,8 +16,8 @@ LATEST_TROPHY = max(LAST_CHAMPIONSHIP, LAST_FA_CUP, LAST_LEAGUE_CUP, LAST_UEFA_C
 
 
 def auth_and_get_api():
-    auth = tweepy.OAuthHandler(API_KEY, API_KEY_SECRET)
-    auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
+    auth = tweepy.OAuthHandler(API_KEY, API_SECRET)
+    auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
 
     return auth, tweepy.API(auth)
 
