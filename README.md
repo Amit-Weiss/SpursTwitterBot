@@ -9,3 +9,5 @@ A Twitter bot to break the bad spell and bring Tottenham Hotspur its first troph
 
 ### How was it built?
 Using [Tweepy](https://www.tweepy.org/ "Tweepy's Homepage"), some basic python and [Heroku](https://www.heroku.com/ "Heroku's Homepage").
+
+You can enter [the bot's Twitter page]https://twitter.com/BotSpurs) and follow it. 
