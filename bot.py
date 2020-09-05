@@ -1,5 +1,6 @@
 import tweepy
 from datetime import date
+from dateutil import relativedelta
 from os import environ
 import time
 
@@ -25,9 +26,12 @@ def auth_and_get_api():
 
 
 def tweet_days_passed(api, spurs_event=LATEST_TROPHY):
-    dates_delta = date.today() - spurs_event
+    days_delta = (date.today() - spurs_event).days
+    dates_delta = relativedelta(date.today(), spurs_event)
 
-    api.update_status(f'{dates_delta.days} Days since Spurs last won a trophy + {time.time()}')
+    api.update_status(f'{days_delta}\n'
+                      f'({dates_delta.years} years, {dates_delta.months} months and {dates_delta.days} days)\n'
+                      f'{time.asctime()}')
 
 
 # Maintains the "you follow me I follow you" policy
