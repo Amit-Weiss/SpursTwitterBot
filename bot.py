@@ -30,7 +30,7 @@ def tweet_days_passed(api, spurs_event=LATEST_TROPHY):
     api.update_status(f'{dates_delta.days} Days since Spurs last won a trophy + {time.time()}')
 
 
-# Maintains the - you follow me I follow you policy
+# Maintains the "you follow me I follow you" policy
 def check_followers(api):
     my_followers = api.followers()
     my_friends = api.friends_ids()
@@ -46,7 +46,8 @@ def check_followers(api):
 
 if __name__ == '__main__':
     # posting_interval = 60 * 60 * 24  # Daily
-    posting_interval = 60 * 60 * 1  # Hourly
+    # posting_interval = 60 * 60 * 1  # Hourly
+    posting_interval = 60 # Every minute
 
     while True:
         print('Performing the daily tasks...')
