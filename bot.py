@@ -40,6 +40,7 @@ def check_followers(api):
 
     for u in to_follow:
         api.create_friendship(u)
+        api.send_direct_message(u, 'Hello new friend!')
     for u in to_unfollow:
         api.destroy_friendship(u)
 
