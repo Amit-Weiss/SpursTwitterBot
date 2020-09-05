@@ -1,6 +1,6 @@
 import tweepy
 from datetime import date
-from dateutil import relativedelta
+from dateutil.relativedelta import relativedelta
 from os import environ
 import time
 
