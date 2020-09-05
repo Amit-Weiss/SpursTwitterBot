@@ -36,15 +36,18 @@ def tweet_days_passed(api, spurs_event=LATEST_TROPHY):
 
 # Maintains the "you follow me I follow you" policy
 def check_followers(api):
-    my_followers = api.followers()
-    my_friends = api.friends_ids()
+    my_id = api.me().id
+    my_followers = api.followers_ids(my_id)
+    my_friends = api.friends_ids(my_id)
 
-    to_follow = [u.id for u in my_followers if u not in my_friends]
+    to_follow = [u for u in my_followers if u not in my_friends]
     to_unfollow = [u for u in my_friends if u not in my_followers]
 
     for u in to_follow:
         api.create_friendship(u)
-        api.send_direct_message(u, 'Hello new friend!')
+        api.send_direct_message(u, f"Hello new friend!\n"
+                                "I'm a bot posting daily how many days passed since Spurs won a trophy.\n"
+                                "If you have any suggestions for things I should do, please send them here!")
     for u in to_unfollow:
         api.destroy_friendship(u)
 
