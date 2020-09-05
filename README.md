@@ -1,5 +1,5 @@
 # SpursTwitterBot
-A Twitter bot to break the bad spell and bring Tottenham Hotspur its first trophy in 12 years.
+A Twitter bot that tweets, in regular intervals, the days that passed since Tottenham hotspur last won a  trophy.
 
 
 ### What does it currently do?
