@@ -30,8 +30,7 @@ def tweet_days_passed(api, spurs_event=LATEST_TROPHY):
     dates_delta = relativedelta(date.today(), spurs_event)
 
     api.update_status(f'{days_delta}\n'
-                      f'({dates_delta.years} years, {dates_delta.months} months and {dates_delta.days} days)\n'
-                      f'{time.asctime()}')
+                      f'({dates_delta.years} years, {dates_delta.months} months and {dates_delta.days} days)\n')
 
 
 # Maintains the "you follow me I follow you" policy
