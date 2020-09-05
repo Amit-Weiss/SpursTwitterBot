@@ -53,9 +53,8 @@ def check_followers(api):
 
 
 if __name__ == '__main__':
-    # posting_interval = 60 * 60 * 24  # Daily
-    posting_interval = 60 * 60 * 1  # Hourly
-    # posting_interval = 60 # Every minute
+    posting_interval = 60 * 60 * 24  # Daily
+    # posting_interval = 60 * 60 * 1  # Hourly
 
     while True:
         print('Performing the daily tasks...')
