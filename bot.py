@@ -17,7 +17,6 @@ LAST_UEFA_CUP = date(1984, 5, 23)
 LATEST_TROPHY = max(LAST_CHAMPIONSHIP, LAST_FA_CUP, LAST_LEAGUE_CUP, LAST_UEFA_CUP)
 
 
-# A kind of 'init' function
 def auth_and_get_api():
     auth = tweepy.OAuthHandler(API_KEY, API_SECRET)
     auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
