@@ -29,8 +29,12 @@ def tweet_days_passed(api, spurs_event=LATEST_TROPHY):
     days_delta = (date.today() - spurs_event).days
     dates_delta = relativedelta(date.today(), spurs_event)
 
-    api.update_status(f'{days_delta}\n'
-                      f'({dates_delta.years} years, {dates_delta.months} months and {dates_delta.days} days)\n')
+    try:
+        api.update_status(f'{days_delta}\n'
+                          f'({dates_delta.years} years, {dates_delta.months} months and {dates_delta.days} days)\n')
+    except tweepy.TweepError as e:
+        print(f'Tweepy raised an exception we ignore: {e}')
+        pass
 
 
 # Maintains the "you follow me I follow you" policy
@@ -53,7 +57,6 @@ def check_followers(api):
 
 if __name__ == '__main__':
     posting_interval = 60 * 60 * 24  # Daily
-    # posting_interval = 60 * 60 * 1  # Hourly
 
     while True:
         print('Performing the daily tasks...')
