@@ -3,7 +3,7 @@ A Twitter bot that tweets, in regular intervals, the days that passed since Tott
 
 
 ### What does it currently do?
-- Posts the number of days since Tottenham last won a trophy (~~daily~~ hourly).
+- Posts the number of days since Tottenham last won a trophy (daily).
 - Whenever a user starts following it, the bot will follow back.
 
 
