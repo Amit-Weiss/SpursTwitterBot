@@ -63,16 +63,27 @@ def check_followers(api):
     to_follow = [u for u in my_followers if u not in my_friends]
     to_unfollow = [u for u in my_friends if u not in my_followers]
 
-    for user in to_follow:
-        api.create_friendship(user)
-        api.send_direct_message(
-            user,
-            "Hello new friend!\n"
-            "I'm a bot posting daily how many days passed since Spurs won a trophy.\n"
-            "If you have any suggestions for things I should do, please send them here!",
+    try:
+        for user in to_follow:
+            api.create_friendship(user)
+            api.send_direct_message(
+                user,
+                "Hello new friend!\n"
+                "I'm a bot posting daily how many days passed since Spurs won a trophy.\n"
+                "If you have any suggestions for things I should do, please send them here!",
+            )
+    except tweepy.TweepError as err:
+        print(
+            f"Tweepy raised an exception when we tried following users: {err}"
         )
-    for user in to_unfollow:
-        api.destroy_friendship(user)
+
+    try:
+        for user in to_unfollow:
+            api.destroy_friendship(user)
+    except tweepy.TweepError as err:
+        print(
+            f"Tweepy raised an exception when we tried UNfollowing users: {err}"
+        )
 
 
 if __name__ == "__main__":
