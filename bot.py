@@ -49,7 +49,7 @@ def tweet_days_passed(api, spurs_event=LATEST_TROPHY):
             f" {dates_delta.days} days)\n"
         )
     except tweepy.TweepError as err:
-        print(f"Tweepy raised an exception we ignore: {err}")
+        print(f"Tweepy exception we ignore: {err}")
 
 
 def check_followers(api):
@@ -63,27 +63,25 @@ def check_followers(api):
     to_follow = [u for u in my_followers if u not in my_friends]
     to_unfollow = [u for u in my_friends if u not in my_followers]
 
-    try:
-        for user in to_follow:
+    for user in to_follow:
+        try:
             api.create_friendship(user)
             api.send_direct_message(
                 user,
                 "Hello new friend!\n"
-                "I'm a bot posting daily how many days passed since Spurs won a trophy.\n"
-                "If you have any suggestions for things I should do, please send them here!",
+                "I'm a bot posting daily how many days passed since Spurs won"
+                " a trophy.\nIf you have any suggestions for things I should "
+                "do, please send them here!",
             )
-    except tweepy.TweepError as err:
-        print(
-            f"Tweepy raised an exception when we tried following users: {err}"
-        )
+        except tweepy.TweepError as err:
+            # Some users are private or prevent DMs, which raises an exception.
+            print(f"Tweepy exception when we tried following users: {err}")
 
     try:
         for user in to_unfollow:
             api.destroy_friendship(user)
     except tweepy.TweepError as err:
-        print(
-            f"Tweepy raised an exception when we tried UNfollowing users: {err}"
-        )
+        print(f"Tweepy exception when we tried un-following users: {err}")
 
 
 if __name__ == "__main__":
