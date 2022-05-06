@@ -1,11 +1,14 @@
 """
 Main file for the Twitter bot, containing all logic and constants.
 """
-import tweepy
-from datetime import date
-from dateutil.relativedelta import relativedelta
 from os import environ
 import time
+
+from datetime import date
+from dateutil.relativedelta import relativedelta
+
+
+import tweepy
 
 # from creds import API_KEY, API_KEY_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET
 API_KEY = environ["API_KEY"]
@@ -42,11 +45,11 @@ def tweet_days_passed(api, spurs_event=LATEST_TROPHY):
     try:
         api.update_status(
             f"{days_delta}\n"
-            f"({dates_delta.years} years, {dates_delta.months} months and {dates_delta.days} days)\n"
+            f"({dates_delta.years} years, {dates_delta.months} months and"
+            f" {dates_delta.days} days)\n"
         )
     except tweepy.TweepError as err:
         print(f"Tweepy raised an exception we ignore: {err}")
-        pass
 
 
 def check_followers(api):
